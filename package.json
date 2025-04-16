@@ -1,0 +1,19 @@
+{
+  "name": "blue_lagoon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shannen2020/blue_lagoon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shannen2020/blue_lagoon/issues"
+  },
+  "homepage": "https://github.com/Shannen2020/blue_lagoon#readme"
+}
