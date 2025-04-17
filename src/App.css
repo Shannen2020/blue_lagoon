@@ -73,18 +73,6 @@ body {
   outline: none;
 }
 
-/* Button */
-/* .input-group-vertical button {
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  background-color: #7a5af8;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-} */
 .button-row {
   display: flex;
   justify-content: flex-start;
@@ -156,17 +144,6 @@ body {
   margin-top: 0;
 }
 
-
-/* .reset-button {
-  margin-top: 10px;
-  background-color: #7a5af8;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-} */
-
 .history-section {
   margin-top: 40px;
 }
@@ -176,6 +153,8 @@ body {
   border-collapse: collapse;
   font-size: 13px;
   text-align: center;
+  color: #1a1a1a;
+  -webkit-text-fill-color: #1a1a1a;
 }
 
 .history-table th, .history-table td {
