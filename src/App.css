@@ -6,6 +6,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   display: flex;
   justify-content: center;
+  color-scheme: light;
 }
 
 /* Container */
@@ -60,6 +61,8 @@ body {
   border: 1px solid #cccccc;
   border-radius: 10px;
   background-color: #fafafa;
+  color: #1a1a1a;
+  -webkit-text-fill-color: #1a1a1a;
   width: 100%;
   box-sizing: border-box;
 }
