@@ -71,7 +71,7 @@ body {
 }
 
 /* Button */
-.input-group-vertical button {
+/* .input-group-vertical button {
   padding: 14px;
   font-size: 16px;
   font-weight: 600;
@@ -81,6 +81,37 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+} */
+.button-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 12px;
+}
+.calcButton {
+  padding: 10px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #7a5af8;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 75%;
+}
+
+.resetButton {
+  padding: 10px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: grey;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 20%;
 }
 
 .input-group-vertical button:hover {
@@ -100,7 +131,7 @@ body {
 
 .content-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 40px;
   padding: 40px;
@@ -118,6 +149,74 @@ body {
   font-weight: 500;
   color: #222;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  justify-content: center;
-  margin: auto;
+  /* justify-content: top; */
+  margin-top: 0;
+}
+
+
+/* .reset-button {
+  margin-top: 10px;
+  background-color: #7a5af8;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+} */
+
+.history-section {
+  margin-top: 40px;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: center;
+}
+
+.history-table th, .history-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.history-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.clear-table {
+  background-color: grey;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.export-table {
+  background-color: #7a5af8;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.result-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.result-note {
+  font-size: 13px;
+  margin-top: 10px;
+  color: #555;
+}
+
+.results-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
