@@ -7,11 +7,27 @@ const Dropdown = () => {
     const [fon, setFon] = useState("")
     const [fcr, setFcr] = useState("")
     const [fsom, setFsom] = useState("")
-    const [ef1, setEf1] = useState(0.01)
+    const [ef1, setEf1] = useState("0.01")
     const[result, setResult] = useState(null)
     const[history, setHistory] = useState([])
+    const [errors, setErrors] = useState({})
 
     const handleCalculate = () => {
+        const newErrors = {};
+        if (isNaN(fsn) || fsn==='') newErrors.fsn = 'Valid number only!'
+        if (isNaN(fon) || fon==='') newErrors.fon = 'Valid number only!'
+        if (isNaN(fcr) || fcr==='') newErrors.fcr = 'Valid number only!'
+        if (isNaN(fsom) || fsom==='') newErrors.fsom = 'Valid number only!'
+        if (isNaN(ef1) || ef1==='') newErrors.ef1 = 'Valid number only!'
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+          }
+        
+          setErrors({});
+
+
         const value = calculateEmissions(fsn, fon, fcr, fsom, ef1)
         setResult(value)
 
@@ -21,14 +37,16 @@ const Dropdown = () => {
         setHistory(prev => [newEntry, ...prev.slice(0, 2)])
     }
 
+
     const handleReset = () => {
         setName("")
         setFsn("")
         setFon("")
         setFcr("")
         setFsom("")
-        setEf1(0.01)
+        setEf1("0.01")
         setResult(null)
+        setErrors({})
     }
 
     const handleExport = () => {
@@ -63,44 +81,50 @@ const Dropdown = () => {
 
                 <label className = 'input-params'>Synthetic Fertilizer N (kg/year) </label>   
                 <input
-                type = 'number'
-                placeholder='Key in a number'
+                type = 'text'
+                placeholder=''
                 value={fsn}
                 onChange={(event)=>
                 setFsn(event.target.value)}
                 />
+                {errors.fsn && <p className="error-message">{errors.fsn}</p>}
 
                 <label className = 'input-params'>Organic Fertilizer N (kg/year)</label>
                 <input
-                type="number"
-                placeholder='Key in a number'
+                type="text"
+                placeholder=''
                 value={fon}
                 onChange={(event)=> setFon(event.target.value)}
                 />
+                {errors.fon && <p className="error-message">{errors.fon}</p>}
 
                 <label className = 'input-params'>Crop Residue N (kg/year)</label>
                 <input
-                type='number'
-                placeholder='Key in a number'
+                type='text'
+                placeholder=''
                 value={fcr}
                 onChange={(event)=>setFcr(event.target.value)}
                 />
+                {errors.fcr && <p className="error-message">{errors.fcr}</p>}
 
                 <label className = 'input-params'>Mineralized Soil N (kg/year)</label>
                 <input
-                type='number'
-                placeholder='Key in a number'
+                type='text'
+                placeholder=''
                 value={fsom}
                 onChange={(event)=>setFsom(event.target.value)}
                 />
+                {errors.fsom && <p className="error-message">{errors.fsom}</p>}
 
                 <label className = 'input-params'>Emission Factor (EF₁)</label>
                 <input
-                type='number'
+                type='text'
                 placeholder='0.001'
                 value={ef1}
                 onChange={(event)=>setEf1(event.target.value)}
                 />
+                {errors.ef1 && <p className="error-message">{errors.ef1}</p>}
+
                 <div className="button-row">
                     <button className="calcButton" onClick={handleCalculate}>Calculate</button>
                     <button className="resetButton"onClick={handleReset}>Reset</button>

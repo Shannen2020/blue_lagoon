@@ -202,3 +202,10 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+
+.error-message {
+  color: #e94e4e;
+  font-size: 12px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
