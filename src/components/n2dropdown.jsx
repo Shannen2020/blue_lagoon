@@ -6,8 +6,8 @@ const Dropdown = () => {
     const [name,setName] = useState("")
     const [fsn, setFsn] = useState("")
     const [fon, setFon] = useState("")
-    const [fcr, setFcr] = useState("")
-    const [fsom, setFsom] = useState("")
+    const [fcr, setFcr] = useState("0")
+    const [fsom, setFsom] = useState("0")
     const [ef1, setEf1] = useState("0.01")
     const[result, setResult] = useState(null)
     const[history, setHistory] = useState([])
@@ -43,7 +43,9 @@ const Dropdown = () => {
         setResult(value)
 
         const newEntry = {
-            name, fsn, fon, fcr, fsom, ef1, ef4, ef5, fracGASF, fracLEACH, method, result: value
+            name, fsn, fon, fcr, fsom, ef1, ef4, ef5, 
+            fracGASF, fracLEACH, method, fertilizerType, 
+            result: value
         };
         setHistory(prev => [newEntry, ...prev.slice(0, 2)])
     }
@@ -53,8 +55,8 @@ const Dropdown = () => {
         setName("")
         setFsn("")
         setFon("")
-        setFcr("")
-        setFsom("")
+        setFcr("0")
+        setFsom("0")
         setEf1("0.01")
         setResult(null)
         setErrors({})
@@ -62,9 +64,12 @@ const Dropdown = () => {
 
     const handleExport = () => {
         const csv = [
-          ["Name", "Synthetic N", "Organic N", "Crop Residue N", "Soil Mineralized N", "EF1", "Result (kg N2O)"]
+          ["Name", "Synthetic N", "Organic N", "Crop Residue N", 
+            "Soil Mineralized N", "EF1", "Fertilizer Type", "Result (kg N2O)"]
             .join(","),
-          ...history.map(row => [row.name, row.fsn, row.fon, row.fcr, row.fsom, row.ef1, row.result].join(","))
+          ...history.map(row => [row.name, row.fsn, row.fon, 
+            row.fcr, row.fsom, row.ef1, 
+            row.fertilizerType, row.result].join(","))
         ].join("\n");
     
         const blob = new Blob([csv], { type: "text/csv" });
@@ -85,8 +90,8 @@ const Dropdown = () => {
             // let user pick via dropdowns or leave it as-is
             setEf4("");
             setEf5("");
-            setFracLEACH("");
-            setFracGASF("");
+            setFracLEACH("0");
+            setFracGASF("0");
         }
         }, [method, fertilizerType]);
 
@@ -105,26 +110,26 @@ const Dropdown = () => {
                         setName(event.target.value)}
                     />
 
-                    <label className = 'input-params'>Synthetic Fertilizer (kg/year) </label>   
+                    <label className = 'input-params'>Weight of N₂0 in Synthetic Fertilizer (kg/year) </label>   
                     <input
                     type = 'text'
-                    placeholder=''
+                    placeholder= ''
                     value={fsn}
                     onChange={(event)=>
                     setFsn(event.target.value)}
                     />
                     {errors.fsn && <p className="error-message">{errors.fsn}</p>}
 
-                    <label className = 'input-params'>Organic Fertilizer (kg/year)</label>
+                    <label className = 'input-params'>Weight of N₂0 in Organic Fertilizer (kg/year)</label>
                     <input
                     type="text"
-                    placeholder=''
+                    placeholder= ''
                     value={fon}
                     onChange={(event)=> setFon(event.target.value)}
                     />
                     {errors.fon && <p className="error-message">{errors.fon}</p>}
 
-                    <label className = 'input-params'>Crop Residue (kg/year)</label>
+                    <label className = 'input-params'>Weight of N₂0 in Crop Residue (kg/year)</label>
                     <input
                     type='text'
                     placeholder=''
@@ -133,7 +138,7 @@ const Dropdown = () => {
                     />
                     {errors.fcr && <p className="error-message">{errors.fcr}</p>}
 
-                    <label className = 'input-params'>Mineralized Soil (kg/year)</label>
+                    <label className = 'input-params'>Weight of N₂0 in Mineralized Soil (kg/year)</label>
                     <input
                     type='text'
                     placeholder=''
@@ -146,7 +151,7 @@ const Dropdown = () => {
                     </div>
                 </div>
             <div className="container">
-                <h1 className="title">Default factors from IPCC</h1>
+                <h1 className="title">IPCC Default Factors</h1>
                 <div className="dropdown-row">
                     <div className="dropdown-item">
                         <label className="input-params">Emission Factor Type</label>
@@ -168,7 +173,7 @@ const Dropdown = () => {
                     </div>
                 </div>
                 <div className="col input-panel">
-                    <label className = 'input-params'>Emission Factor (EF1)</label>
+                    <label className = 'input-params'>Emission Factor (EF₁)</label>
                     <input
                     type='text'
                     placeholder='0.001'
@@ -177,7 +182,7 @@ const Dropdown = () => {
                     />
                     {errors.ef1 && <p className="error-message">{errors.ef1}</p>}
 
-                    <label className = 'input-params'>Emission Factor (EF4)</label>
+                    <label className = 'input-params'>Emission Factor (EF₄)</label>
                     <input
                     type='text'
                     value={ef4}
@@ -186,7 +191,7 @@ const Dropdown = () => {
                     />
                     {errors.ef4 && <p className="error-message">{errors.ef4}</p>}
 
-                    <label className = 'input-params'>Emission Factor (EF5)</label>
+                    <label className = 'input-params'>Emission Factor (EF₅)</label>
                     <input
                     type='text'
                     value={ef5}
@@ -240,16 +245,16 @@ const Dropdown = () => {
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Synthetic Fertilizer (kg/year)</th>
-                                        <th>Organic Fertilizer(kg/year)</th>
-                                        <th>Crop Residue(kg/year)</th>
-                                        <th>Mineralized Soil (kg/year)</th>
-                                        {/* <th>EF1</th>
-                                        <th>EF4</th>
-                                        <th>EF5</th>
+                                        <th>N in Synthetic Fertilizer (kg/year)</th>
+                                        <th>N in Organic Fertilizer(kg/year)</th>
+                                        <th>N in Crop Residue(kg/year)</th>
+                                        <th>N in Mineralized Soil (kg/year)</th>
+                                        {/* <th>EF₁</th>
+                                        <th>EF₄</th>
+                                        <th>EF₅</th>
                                         <th>FracGAS</th>
-                                        <th>FracLEACH</th> 
-                                        <th>EF Type</th> */}
+                                        <th>FracLEACH</th> */}
+                                        <th>Fertilizer Type</th> 
                                         <th>Result (kg N₂O/year)</th>
                                     </tr>
                                 </thead>
@@ -265,8 +270,8 @@ const Dropdown = () => {
                                         <td>{row.ef4}</td>
                                         <td>{row.ef5}</td>
                                         <td>{row.fracGASF}</td>
-                                        <td>{row.fracLEACH}</td>
-                                        <td>{row.method}</td> */}
+                                        <td>{row.fracLEACH}</td> */}
+                                        <td>{row.fertilizerType}</td> 
                                         <td><strong>{row.result}</strong></td>
                                     </tr>
                                     ))}
