@@ -17,10 +17,10 @@ const calculateIndirectEmssionLeach = (fsn, fracLEACH =  0.24, ef5)=> {
     return n2oLeaching
 }
 
-const calculateEmissions = ()=> {
-    const direct = calculateDirect()
-    const indirectVol = calculateIndirectEmssionVol(fsn, ef4)
-    const indirectLeach = calculateIndirectEmssionLeach(fsn, ef5)
+const calculateEmissions = (fsn, fon, fcr, fsom, ef1, ef4, ef5, fracGASF, fracLEACH)=> {
+    const direct = calculateDirect(fsn, fon, fcr, fsom, ef1)
+    const indirectVol = calculateIndirectEmssionVol(fsn, fracGASF,ef4)
+    const indirectLeach = calculateIndirectEmssionLeach(fsn, fracLEACH, ef5)
 
     const total = direct + indirectVol + indirectLeach
     return total.toFixed(2)
