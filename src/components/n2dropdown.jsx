@@ -146,9 +146,14 @@ const Dropdown = () => {
                     onChange={(event)=>setFsom(event.target.value)}
                     />
                     {errors.fsom && <p className="error-message">{errors.fsom}</p>}
-
-
                     </div>
+                <div className="reference-link">
+                    <a href="https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer">
+                    📘 I'm lost! Bring me to IPCC Documentation
+                    </a>
+                </div>
                 </div>
             <div className="container">
                 <h1 className="title">IPCC Default Factors</h1>

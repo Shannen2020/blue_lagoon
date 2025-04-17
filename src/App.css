@@ -139,7 +139,6 @@ input::placeholder {
   font-weight: 500;
   color: #222;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
-  /* justify-content: top; */
   margin-top: 0;
 }
 
@@ -280,4 +279,19 @@ select {
   border-radius: 6px;
   border: 1px solid #ccc;
   background-color: #fdfdfd;
+}
+
+.reference-link {
+  font-size: 12px;
+  margin-top: 20px;
+  color: #555;
+}
+
+.reference-link a {
+  color: #3366cc;
+  text-decoration: none;
+}
+
+.reference-link a:hover {
+  text-decoration: underline;
 }
